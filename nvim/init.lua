@@ -589,6 +589,7 @@ require('nvim-treesitter.configs').setup {
     'bash',
     'embedded_template',
     'html',
+    'gdscript',
     'java',
     'javascript',
     'kotlin',
@@ -695,7 +696,54 @@ vim.keymap.set('n', '<leader>tw', function() require('neotest').output.open() en
   { desc = 'Toggle [T]est output [w]indow' })
 
 -- [[ Configure LSP ]]
---  This function gets run when an LSP connects to a particular buffer.
+-- Enable the following language servers
+--  Feel free to add/remove any LSPs that you want here. They will automatically be installed.
+--
+--  Add any additional override configuration in the following tables. They will be passed to
+--  the `settings` field of the server config. You must look up that documentation yourself.
+local servers = {
+  -- cssls = {},
+  -- emmet_ls = {},
+  -- solargraph = {},
+  kotlin_language_server = {},
+  pylsp = {},
+  lua_ls = {
+    Lua = {
+      workspace = { checkThirdParty = false },
+      telemetry = { enable = false },
+    },
+  },
+  -- ts_ls = {},
+}
+
+-- Setup neovim lua configuration
+require('neodev').setup()
+
+-- nvim-cmp supports additional completion capabilities, so broadcast that to servers
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
+
+-- Ensure the servers above are installed
+local mason_lspconfig = require 'mason-lspconfig'
+
+mason_lspconfig.setup {
+  ensure_installed = vim.tbl_keys(servers),
+}
+
+-- Set up Godot LSP
+-- paths to check for project.godot file
+local paths_to_check = {'/', '/../'}
+local is_godot_project = false
+local cwd = vim.fn.getcwd()
+
+-- iterate over paths and check
+for _, value in pairs(paths_to_check) do
+    if vim.uv.fs_stat(cwd .. value .. 'project.godot') then
+        is_godot_project = true
+        break
+    end
+end
+
 local on_attach = function(_, bufnr)
   -- NOTE: Remember that lua is a real programming language, and as such it is possible
   -- to define small helper and utility functions so you don't have to repeat yourself
@@ -735,39 +783,14 @@ local on_attach = function(_, bufnr)
   end, { desc = 'Format current buffer with LSP' })
 end
 
--- Enable the following language servers
---  Feel free to add/remove any LSPs that you want here. They will automatically be installed.
---
---  Add any additional override configuration in the following tables. They will be passed to
---  the `settings` field of the server config. You must look up that documentation yourself.
-local servers = {
-  cssls = {},
-  emmet_ls = {},
-  solargraph = {},
-  kotlin_language_server = {},
-  pylsp = {},
-  lua_ls = {
-    Lua = {
-      workspace = { checkThirdParty = false },
-      telemetry = { enable = false },
-    },
-  },
-  ts_ls = {},
-}
+vim.lsp.config('*', {
+  on_attach = on_attach
+})
 
--- Setup neovim lua configuration
-require('neodev').setup()
-
--- nvim-cmp supports additional completion capabilities, so broadcast that to servers
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
-
--- Ensure the servers above are installed
-local mason_lspconfig = require 'mason-lspconfig'
-
-mason_lspconfig.setup {
-  ensure_installed = vim.tbl_keys(servers),
-}
+-- godot lsp
+if is_godot_project then
+  vim.lsp.enable('gdscript')
+end
 
 -- [[ Configure nvim-cmp ]]
 -- See `:help cmp`
