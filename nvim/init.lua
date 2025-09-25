@@ -92,6 +92,14 @@ require('lazy').setup({
   },
 
   {
+    -- Linter configuration
+    "rshkarin/mason-nvim-lint",
+    dependencies = {
+      "mfussenegger/nvim-lint",
+    }
+  },
+
+  {
     -- Autocompletion
     'hrsh7th/nvim-cmp',
     dependencies = {
@@ -419,6 +427,12 @@ vim.o.mouse = ""
 -- vim.opt.fillchars = { eob = " " }
 vim.o.fillchars = [[eob: ,foldopen:,foldclose:]]
 
+-- Display diagnostics
+vim.diagnostic.enable = true
+vim.diagnostic.config({
+  virtual_lines = true,
+})
+
 -- [[ Basic Keymaps ]]
 
 -- Keymaps for better default experience
@@ -730,18 +744,33 @@ mason_lspconfig.setup {
   ensure_installed = vim.tbl_keys(servers),
 }
 
+-- Setup linters
+require('lint').linters_by_ft = {
+  gdscript = { "gdlint" },
+}
+
+require("mason-nvim-lint").setup({
+  ensure_installed = { "gdscript" },
+})
+
+vim.api.nvim_create_autocmd({ "BufWritePost" }, {
+  callback = function()
+    require("lint").try_lint()
+  end,
+})
+
 -- Set up Godot LSP
 -- paths to check for project.godot file
-local paths_to_check = {'/', '/../'}
+local paths_to_check = { '/', '/../' }
 local is_godot_project = false
 local cwd = vim.fn.getcwd()
 
 -- iterate over paths and check
 for _, value in pairs(paths_to_check) do
-    if vim.uv.fs_stat(cwd .. value .. 'project.godot') then
-        is_godot_project = true
-        break
-    end
+  if vim.uv.fs_stat(cwd .. value .. 'project.godot') then
+    is_godot_project = true
+    break
+  end
 end
 
 local on_attach = function(_, bufnr)
