@@ -430,7 +430,7 @@ vim.o.fillchars = [[eob: ,foldopen:,foldclose:]]
 -- Display diagnostics
 vim.diagnostic.enable = true
 vim.diagnostic.config({
-  virtual_lines = true,
+  virtual_text = true,
 })
 
 -- [[ Basic Keymaps ]]
