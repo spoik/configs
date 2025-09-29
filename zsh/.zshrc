@@ -102,10 +102,31 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-
-eval "$(zoxide init zsh --cmd cd)"
-
+alias s="sudo"
 alias v="nvim"
+alias sv="sudo nvim"
+alias editrc="nvim ~/.zshrc"
+alias reloadrc="source ~/.zshrc"
 
+export EDITOR="nvim"
+
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:/.rvm/bin"
+export PATH="$PATH:/.rvm/shims"
+export PATH="$PATH:/go/bin"
+
+eval "$(rbenv init -)"
+source /usr/share/nvm/init-nvm.sh
+
+# Load NVM version when entering a directory with an .nvmrc file
+autoload -U add-zsh-hook
+load-nvmrc() {
+  if [[ -f .nvmrc && -r .nvmrc ]]; then
+    nvm use
+  elif [[ $(nvm version) != $(nvm version default)  ]]; then
+    echo "Reverting to nvm default version"
+    nvm use default
+  fi
+}
 bindkey '^[ ' autosuggest-accept
 bindkey '^ ' autosuggest-execute
