@@ -117,7 +117,10 @@ export PATH="$PATH:/.rvm/bin"
 export PATH="$PATH:/.rvm/shims"
 export PATH="$PATH:/go/bin"
 
-eval "$(rbenv init -)"
+if type rbenv > /dev/null; then
+  eval "$(rbenv init -)"
+fi
+
 source /usr/share/nvm/init-nvm.sh
 
 # Load NVM version when entering a directory with an .nvmrc file
