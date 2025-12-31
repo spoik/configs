@@ -3,6 +3,7 @@
 
 # Path to your Oh My Zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
+export GODOT="/usr/bin/godot"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time Oh My Zsh is loaded, in which case,
@@ -111,6 +112,7 @@ alias editrc="nvim ~/.zshrc"
 alias reloadrc="source ~/.zshrc"
 
 export EDITOR="nvim"
+export TERM="wezterm"
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:/.rvm/bin"
@@ -121,7 +123,7 @@ if type rbenv > /dev/null; then
   eval "$(rbenv init -)"
 fi
 
-source /usr/share/nvm/init-nvm.sh
+# source /usr/share/nvm/init-nvm.sh
 
 # Load NVM version when entering a directory with an .nvmrc file
 autoload -U add-zsh-hook

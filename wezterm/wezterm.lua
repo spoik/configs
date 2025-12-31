@@ -19,6 +19,7 @@ config.hide_tab_bar_if_only_one_tab = true
 config.native_macos_fullscreen_mode = true
 config.show_new_tab_button_in_tab_bar = false
 config.window_background_opacity = 0.85
+-- config.window_background_opacity = 0.60
 config.window_decorations = "NONE"
 config.window_frame = {
 	font_size = 12
