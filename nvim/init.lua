@@ -93,10 +93,7 @@ require('lazy').setup({
 
   {
     -- Linter configuration
-    "rshkarin/mason-nvim-lint",
-    dependencies = {
-      "mfussenegger/nvim-lint",
-    }
+    "mfussenegger/nvim-lint",
   },
 
   { 'L3MON4D3/LuaSnip' },
@@ -779,11 +776,11 @@ vim.keymap.set('n', '<leader>tw', function() require('neotest').output.open() en
 --  Add any additional override configuration in the following tables. They will be passed to
 --  the `settings` field of the server config. You must look up that documentation yourself.
 local servers = {
-  -- cssls = {},
-  -- emmet_ls = {},
+  cssls = {},
+  emmet_ls = {},
   solargraph = {},
   gopls = {},
-  kotlin_language_server = {},
+  -- kotlin_language_server = {},
   pylsp = {},
   lua_ls = {
     Lua = {
@@ -791,7 +788,9 @@ local servers = {
       telemetry = { enable = false },
     },
   },
-  -- ts_ls = {},
+  tailwindcss = {},
+  ts_ls = {},
+  vue_ls = {},
 }
 
 -- Setup neovim lua configuration
@@ -806,10 +805,6 @@ require('mason-lspconfig').setup {
 require('lint').linters_by_ft = {
   gdscript = { "gdlint" },
 }
-
-require("mason-nvim-lint").setup({
-  ensure_installed = { "gdscript" },
-})
 
 vim.api.nvim_create_autocmd({ "BufWritePost" }, {
   callback = function()
