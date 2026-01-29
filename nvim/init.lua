@@ -874,6 +874,19 @@ vim.lsp.config('*', {
   on_attach = on_attach
 })
 
+vim.lsp.config('ts_ls', {
+  init_options = {
+    plugins = {
+      {
+        name = '@vue/typescript-plugin',
+        location = vim.fn.expand("$MASON/packages/vue-language-server/node_modules/@vue/language-server"),
+        languages = { 'vue' },
+      },
+    },
+  },
+  filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue', 'svelte' },
+})
+
 local luasnip = require 'luasnip'
 require('luasnip.loaders.from_vscode').lazy_load()
 luasnip.config.setup {}
