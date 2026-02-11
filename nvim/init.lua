@@ -362,8 +362,6 @@ require('lazy').setup({
       -- See :h blink-cmp-config-keymap for defining your own keymap
       keymap = {
         preset = 'default',
-        -- ['<Tab>'] = { 'select_next', 'fallback' },
-        -- ['<S-Tab>'] = { 'select_prev', 'fallback' },
       },
 
       appearance = {
@@ -373,7 +371,10 @@ require('lazy').setup({
       },
 
       -- (Default) Only show the documentation popup when manually triggered
-      completion = { documentation = { auto_show = false } },
+      completion = {
+        -- ghost_text = { enabled = true, },
+        documentation = { auto_show = false, }
+      },
 
       -- Default list of enabled providers defined so that you can extend it
       -- elsewhere in your config, without redefining it, due to `opts_extend`
@@ -406,6 +407,12 @@ require('lazy').setup({
     end,
     config = true
   },
+
+  -- Github copilot
+  { 'github/copilot.vim' },
+
+  -- Twilight: dim inactive portions of the code you're editing
+  { 'folke/twilight.nvim' },
 
   -- NOTE: Next Step on Your Neovim Journey: Add/Configure additional "plugins" for kickstart
   --       These are some example plugins that I've included in the kickstart repository.
@@ -462,6 +469,9 @@ vim.o.completeopt = 'menuone,noselect'
 
 -- NOTE: You should make sure your terminal supports this
 vim.o.termguicolors = true
+
+-- Fixes flickering and artifacts when moving between splits or scrolling
+vim.opt.termsync = false
 
 -- Show the name of the edited file as the title for Vim
 vim.o.title = true
