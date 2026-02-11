@@ -16,9 +16,10 @@ config.font_size = 12
 config.line_height = 1.1
 
 config.hide_tab_bar_if_only_one_tab = true
+config.use_fancy_tab_bar = false
 config.native_macos_fullscreen_mode = true
 config.show_new_tab_button_in_tab_bar = false
-config.window_background_opacity = 0.85
+config.window_background_opacity = 0.8
 -- config.window_background_opacity = 0.60
 config.window_decorations = "NONE"
 config.window_frame = {
@@ -33,14 +34,15 @@ config.window_padding = {
 
 config.keys = {
 	-- Move tabs keybindings
-	{ key = '{', mods = 'SHIFT|CMD', action = action.MoveTabRelative(-1) },
-	{ key = '}', mods = 'SHIFT|CMD', action = action.MoveTabRelative(1) },
-	{ key = '{', mods = 'SHIFT|ALT', action = action.ActivateTabRelative(-1) },
-	{ key = '}', mods = 'SHIFT|ALT', action = action.ActivateTabRelative(1) },
-	{ key = '-', mods = 'CMD',       action = action.DisableDefaultAssignment },
-	{ key = '=', mods = 'CMD',       action = action.DisableDefaultAssignment },
-	{ key = '-', mods = 'CTRL',      action = action.DisableDefaultAssignment },
-	{ key = '=', mods = 'CTRL',      action = action.DisableDefaultAssignment },
+	{ key = '{', mods = 'SHIFT|CMD',  action = action.MoveTabRelative(-1) },
+	{ key = '}', mods = 'SHIFT|CMD',  action = action.MoveTabRelative(1) },
+	{ key = '{', mods = 'SHIFT|ALT',  action = action.ActivateTabRelative(-1) },
+	{ key = '}', mods = 'SHIFT|ALT',  action = action.ActivateTabRelative(1) },
+	{ key = '-', mods = 'CMD',        action = action.DisableDefaultAssignment },
+	{ key = '=', mods = 'CMD',        action = action.DisableDefaultAssignment },
+	{ key = '-', mods = 'CTRL',       action = action.DisableDefaultAssignment },
+	{ key = '=', mods = 'CTRL',       action = action.DisableDefaultAssignment },
+	{ key = 'l', mods = 'SHIFT|CTRL', action = action.DisableDefaultAssignment },
 }
 
 return config
