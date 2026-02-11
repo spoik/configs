@@ -39,7 +39,7 @@ ZSH_THEME="spike"
 # DISABLE_LS_COLORS="true"
 
 # Uncomment the following line to disable auto-setting terminal title.
-# DISABLE_AUTO_TITLE="true"
+DISABLE_AUTO_TITLE="true"
 
 # Uncomment the following line to enable command auto-correction.
 # ENABLE_CORRECTION="true"
@@ -114,7 +114,7 @@ alias editrc="nvim ~/.zshrc"
 alias reloadrc="source ~/.zshrc"
 
 export EDITOR="nvim"
-export TERM="wezterm"
+# export TERM="wezterm"
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:/.rvm/bin"
