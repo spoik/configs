@@ -332,11 +332,29 @@ require('lazy').setup({
     end,
   },
 
+  -- Copilot: Github code generation
+  {
+    "zbirenbaum/copilot.lua",
+    cmd = "Copilot",
+    event = "InsertEnter",
+    opts = {
+      suggestion = { enabled = false },
+      panel = { enabled = false },
+      filetypes = {
+        markdown = true,
+        help = true,
+      },
+    },
+  },
+
   -- Blink: completion plugin with support for LSPs, cmdline, signature help, and snippets.
   {
     'saghen/blink.cmp',
     -- optional: provides snippets for the snippet source
-    dependencies = { 'rafamadriz/friendly-snippets' },
+    dependencies = {
+      'rafamadriz/friendly-snippets',
+      'fang2hou/blink-copilot',
+    },
 
     -- use a release tag to download pre-built binaries
     version = '1.*',
@@ -372,14 +390,22 @@ require('lazy').setup({
 
       -- (Default) Only show the documentation popup when manually triggered
       completion = {
-        -- ghost_text = { enabled = true, },
+        ghost_text = { enabled = true, },
         documentation = { auto_show = false, }
       },
 
       -- Default list of enabled providers defined so that you can extend it
       -- elsewhere in your config, without redefining it, due to `opts_extend`
       sources = {
-        default = { 'lsp', 'path', 'snippets', 'buffer' },
+        default = { 'copilot', 'lsp', 'path', 'snippets', 'buffer' },
+        providers = {
+          copilot = {
+            name = "copilot",
+            module = "blink-copilot",
+            score_offset = 100,
+            async = true,
+          },
+        },
       },
 
       -- (Default) Rust fuzzy matcher for typo resistance and significantly better performance
@@ -407,9 +433,6 @@ require('lazy').setup({
     end,
     config = true
   },
-
-  -- Github copilot
-  { 'github/copilot.vim' },
 
   -- Twilight: dim inactive portions of the code you're editing
   { 'folke/twilight.nvim' },
