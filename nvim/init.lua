@@ -811,16 +811,16 @@ vim.keymap.set('n', '<leader>tw', function() require('neotest').output.open() en
 local servers = {
   cssls = {},
   emmet_ls = {},
-  solargraph = {},
   gopls = {},
   -- kotlin_language_server = {},
-  pylsp = {},
   lua_ls = {
     Lua = {
       workspace = { checkThirdParty = false },
       telemetry = { enable = false },
     },
   },
+  pylsp = {},
+  solargraph = {},
   tailwindcss = {},
   ts_ls = {},
   vue_ls = {},

@@ -454,8 +454,8 @@
   "theme.font.weight": 600,
   "theme.bar.border.location": "none",
   "theme.bar.enableShadow": false,
-  "theme.bar.outer_spacing": "0.4em",
-  "theme.bar.buttons.y_margins": "0.4em",
+  "theme.bar.outer_spacing": "0.3em",
+  "theme.bar.buttons.y_margins": "0.3em",
   "theme.bar.buttons.spacing": "0.25em",
   "theme.bar.buttons.padding_x": "0.6rem",
   "menus.dashboard.shortcuts.enabled": true,
@@ -468,5 +468,6 @@
   "bar.workspaces.reverse_scroll": false,
   "bar.workspaces.workspaces": 3,
   "bar.workspaces.showAllActive": true,
-  "bar.workspaces.monitorSpecific": true
+  "bar.workspaces.monitorSpecific": true,
+  "theme.bar.border.width": "0.15em"
 }
