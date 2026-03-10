@@ -117,9 +117,9 @@ export EDITOR="nvim"
 # export TERM="wezterm"
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:/.rvm/bin"
-export PATH="$PATH:/.rvm/shims"
-export PATH="$PATH:/go/bin"
+export PATH="$PATH:$HOME/.rvm/bin"
+export PATH="$PATH:$HOME/.rvm/shims"
+export PATH="$PATH:$HOME/go/bin"
 
 if type rbenv > /dev/null; then
   eval "$(rbenv init -)"
