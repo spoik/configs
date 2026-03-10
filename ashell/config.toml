@@ -1,0 +1,30 @@
+[appearance]
+opacity = 1
+style = "Solid"
+scale_factor = 1.4
+workspace_colors = [ "#D385B5F2" ]
+text_color = "#dddddd"
+
+[appearance.background_color]
+base = "#000000"
+strong = "#222222"
+weak = "#111111"
+
+[appearance.primary_color]
+base = "#D385B5F2"
+
+[appearance.secondary_color]
+base = "#000000"
+strong = "#111111"
+weak = "#ffffff"
+
+[modules]
+left = [ [ "Workspaces" ] ]
+center = []
+right = [ [ "Tray", "Clock", "Settings" ] ]
+
+[clock]
+format = "%D %r"
+
+[settings]
+indicators = [ "Bluetooth", "Network", "Audio", "Battery" ]
