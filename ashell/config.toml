@@ -21,10 +21,10 @@ weak = "#ffffff"
 [modules]
 left = [ [ "Workspaces" ] ]
 center = []
-right = [ [ "Tray", "Clock", "Settings" ] ]
+right = [ [ "Tray", "Settings", "Clock" ] ]
 
 [clock]
-format = "%D %r"
+format = "%a %b %e %l:%M %P"
 
 [settings]
 indicators = [ "Bluetooth", "Network", "Audio", "Battery" ]
