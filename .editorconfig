@@ -2,3 +2,6 @@ root = true
 
 [*.go]
 indent_size = 4
+
+[*.templ]
+indent_size = 4
