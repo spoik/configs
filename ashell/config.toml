@@ -1,7 +1,8 @@
 [appearance]
 opacity = 1
 style = "Solid"
-scale_factor = 1.4
+scale_factor = 1.2
+font_size = 6
 workspace_colors = [ "#D385B5F2" ]
 text_color = "#dddddd"
 
@@ -21,10 +22,10 @@ weak = "#ffffff"
 [modules]
 left = [ [ "Workspaces" ] ]
 center = []
-right = [ [ "Tray", "Settings", "Clock" ] ]
+right = [ [ "Tray", "Settings", "Tempo" ] ]
 
-[clock]
-format = "%a %b %e %l:%M %P"
+[tempo]
+clock_format = "%a %b %e %l:%M %P"
 
 [settings]
 indicators = [ "Bluetooth", "Network", "Audio", "Battery" ]
