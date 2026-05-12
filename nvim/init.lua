@@ -126,13 +126,9 @@ require('lazy').setup({
     },
   },
 
-  {
-    'doums/darcula',
-    priority = 1000,
-    config = function()
-      vim.cmd.colorscheme 'darcula'
-    end,
-  },
+  { 'doums/darcula',   priority = 1000 },
+
+  { "catppuccin/nvim", name = "catppuccin", priority = 1000 },
 
   {
     -- Set lualine as statusline
@@ -265,6 +261,7 @@ require('lazy').setup({
     dependencies = {
       "nvim-lua/plenary.nvim",
       "nvim-treesitter/nvim-treesitter",
+      "lewis6991/async.nvim",
     },
     config = function()
       require("refactoring").setup()
@@ -333,19 +330,19 @@ require('lazy').setup({
   },
 
   -- Copilot: Github code generation
-  {
-    "zbirenbaum/copilot.lua",
-    cmd = "Copilot",
-    event = "InsertEnter",
-    opts = {
-      suggestion = { enabled = false },
-      panel = { enabled = false },
-      filetypes = {
-        markdown = true,
-        help = true,
-      },
-    },
-  },
+  -- {
+  --   "zbirenbaum/copilot.lua",
+  --   cmd = "Copilot",
+  --   event = "InsertEnter",
+  --   opts = {
+  --     suggestion = { enabled = false },
+  --     panel = { enabled = false },
+  --     filetypes = {
+  --       markdown = true,
+  --       help = true,
+  --     },
+  --   },
+  -- },
 
   -- Blink: completion plugin with support for LSPs, cmdline, signature help, and snippets.
   {
@@ -391,7 +388,7 @@ require('lazy').setup({
       -- (Default) Only show the documentation popup when manually triggered
       completion = {
         ghost_text = { enabled = true, },
-        documentation = { auto_show = false, }
+        documentation = { auto_show = true, }
       },
 
       -- Default list of enabled providers defined so that you can extend it
@@ -523,6 +520,14 @@ vim.diagnostic.enable = true
 vim.diagnostic.config({
   virtual_text = true,
 })
+
+require("catppuccin").setup({
+  flavour = "mocha",             -- latte, frappe, macchiato, mocha
+  transparent_background = true, -- disables setting the background color.
+})
+
+-- vim.cmd.colorscheme 'darcula'
+vim.cmd.colorscheme "catppuccin"
 
 -- [[ Basic Keymaps ]]
 
@@ -666,9 +671,6 @@ vim.keymap.set(
   { desc = 'Git [W]orktree [C]reate' }
 )
 
--- Refactoring keymaps
-require("telescope").load_extension("refactoring")
-
 vim.keymap.set(
   { "n", "x" },
   "<leader>ro",
@@ -708,7 +710,9 @@ require('nvim-treesitter.configs').setup {
     'regex',
     'ruby',
     'scss',
+    'sql',
     -- 'swift',
+    'templ',
     'terraform',
     'typescript',
     'vimdoc',
@@ -810,6 +814,8 @@ vim.keymap.set('n', '<leader>tw', function() require('neotest').output.open() en
 --  the `settings` field of the server config. You must look up that documentation yourself.
 local servers = {
   cssls = {},
+  csharp_ls = {},
+  djlsp = {},
   emmet_ls = {},
   gopls = {},
   -- kotlin_language_server = {},
@@ -819,9 +825,12 @@ local servers = {
       telemetry = { enable = false },
     },
   },
+  postgres_lsp = {},
   pylsp = {},
+  pyright = {},
   solargraph = {},
   tailwindcss = {},
+  templ = {},
   ts_ls = {},
   vue_ls = {},
 }
