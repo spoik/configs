@@ -1,8 +1,10 @@
+[appearance.bar]
+surface = "solid"
+radius = "none"
+
 [appearance]
 opacity = 1
-style = "Solid"
 scale_factor = 1.2
-font_size = 6
 workspace_colors = [ "#D385B5F2" ]
 text_color = "#dddddd"
 
@@ -13,11 +15,6 @@ weak = "#111111"
 
 [appearance.primary_color]
 base = "#D385B5F2"
-
-[appearance.secondary_color]
-base = "#000000"
-strong = "#111111"
-weak = "#ffffff"
 
 [modules]
 left = [ [ "Workspaces" ] ]
